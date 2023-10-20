@@ -1,0 +1,31 @@
+<div class="container">
+
+    <form (ngSubmit)="onSubmit(form)" ngForm #form="ngForm" class="sa-mt-60">
+        
+        <mat-form-field  [style]="{width:'49%',marginRight:'2%'}">
+            <mat-label>question in english</mat-label>
+            <input matInput ngModel name="arQuestion"  [value]="(mode=='edit'&&question!=null)?question.arQuestion:null">
+        </mat-form-field>
+        <mat-form-field  style="width:49%">
+            <mat-label>question in arabic</mat-label>
+            <input matInput   ngModel name="enQuestion" [value]="(mode=='edit'&&question!=null)?question.enQuestion:null">
+        </mat-form-field>
+        <mat-form-field  [style]="{width:'100%'}" >
+            <mat-label>category</mat-label>
+            <input matInput ngModel name="category"  [value]="(mode=='edit'&&question!=null)?question.category:null">
+        </mat-form-field>
+    <br>
+    <mat-form-field style="width:100%">
+        <mat-label>answer in english</mat-label>
+        <textarea matInput  ngModel name="enAnswer" [value]="(mode=='edit'&&question!=null)?question.enAnswer:null"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field style="width:100%">
+        <mat-label>answer in arabic</mat-label>
+        <textarea matInput  ngModel name="arAnswer"  [value]="(mode=='edit'&&question!=null)?question.arAnswer:null"></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary">{{mode == 'edit'?'edite Done':'add'}}</button>
+
+</form>
+
+</div>

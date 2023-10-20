@@ -1,0 +1,14 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+.sa-w-100{
+    width: 100%;
+}
+.sa-w-50{
+    width: 50%;
+}
+.sa-mt-60{
+    margin-top: 60px;
+}
