@@ -4,27 +4,28 @@
         
         <mat-form-field  [style]="{width:'49%',marginRight:'2%'}">
             <mat-label>question in english</mat-label>
-            <input matInput ngModel name="arQuestion"  [value]="(mode=='edit'&&question!=null)?question.arQuestion:null">
+            <input matInput ngModel name="enQuestion" >
         </mat-form-field>
         <mat-form-field  style="width:49%">
             <mat-label>question in arabic</mat-label>
-            <input matInput   ngModel name="enQuestion" [value]="(mode=='edit'&&question!=null)?question.enQuestion:null">
+            <input matInput   ngModel name="arQuestion">
         </mat-form-field>
         <mat-form-field  [style]="{width:'100%'}" >
             <mat-label>category</mat-label>
-            <input matInput ngModel name="category"  [value]="(mode=='edit'&&question!=null)?question.category:null">
+            <input matInput ngModel name="category" >
         </mat-form-field>
     <br>
     <mat-form-field style="width:100%">
         <mat-label>answer in english</mat-label>
-        <textarea matInput  ngModel name="enAnswer" [value]="(mode=='edit'&&question!=null)?question.enAnswer:null"></textarea>
+        <textarea matInput  ngModel name="enAnswer"  ></textarea>
     </mat-form-field>
     <br>
     <mat-form-field style="width:100%">
         <mat-label>answer in arabic</mat-label>
-        <textarea matInput  ngModel name="arAnswer"  [value]="(mode=='edit'&&question!=null)?question.arAnswer:null"></textarea>
+        <textarea matInput  ngModel name="arAnswer"  ></textarea>
       </mat-form-field>
-      <button mat-raised-button color="primary">{{mode == 'edit'?'edite Done':'add'}}</button>
+      <button  mat-raised-button color="primary">{{mode == 'edit'?('edit' |translate):('add' |translate)}}</button>
+      <button class="sa-mx-5" mat-raised-button color="warn" (click)="cancelData($event)">{{'cancel' |translate}}</button>
 
 </form>
 

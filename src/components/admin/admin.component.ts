@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
@@ -10,13 +10,14 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { QuestionService } from 'src/services/question.service';
 import { Router } from '@angular/router';
-import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
-
-
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar'; 
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { LangService } from 'src/services/lang.service';
 @Component({
   selector: 'app-admin',
   standalone: true,
-
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -26,7 +27,16 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angula
     MatSortModule,
     MatPaginatorModule,
     MatDialogModule,
+    DialogComponent,
+    MatSnackBarModule,
+    TranslateModule
+    
+    
   ],
+  providers: [
+    MatSnackBarModule,
+    ],
+  
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
@@ -36,14 +46,23 @@ export class AdminComponent implements  OnInit {
   dataSource!: MatTableDataSource<IQuestion>;
   public dataSetCount!:number; 
   public pageSize!:number; 
+  public currentLang!:string 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private questionsService :QuestionService,private router:Router,public dialog: MatDialog) {
+  constructor(private questionsService :QuestionService,
+    private router:Router,
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar,
+    private translate:TranslateService,
+    private Lang:LangService) {
   }
 
   ngOnInit(): void {
+    this.Lang.currentlang.subscribe((lang)=>{
+      this.currentLang = lang
+    })
     this.questionsService.getAllQuestions().subscribe((user)=>{
       console.log(user)
       this.dataSource = new MatTableDataSource<IQuestion>(user);
@@ -67,21 +86,17 @@ export class AdminComponent implements  OnInit {
         const index = this.dataSource.data.indexOf(row);
         this.dataSource.data.splice(index, 1);
         this.dataSource._updateChangeSubscription(); 
+        this.openSnackbarNotification("deleted Successfully")
 
     })
-    // this.router.navigate(['add',id])
   }
   hideQuestion(row:IQuestion){
     const newData =  {...row,visibility:!row.visibility}
-    const newDataSource =this.dataSource.data.map((item )=>{
-        if(item.id == row.id){
-          return newData
-        }
-        return item
-    });
+    const newDataSource =this.dataSource.data.map(item => item.id == row.id ? newData:item);
     this.questionsService.upDateQuestion(row.id,newData).subscribe(()=>{
         
         this.dataSource.data = newDataSource; 
+        this.openSnackbarNotification("updated Successfully")
     })
   }
   updateQuestion(row:IQuestion){
@@ -90,8 +105,29 @@ export class AdminComponent implements  OnInit {
   addNew(){
     this.router.navigate(['/add'])
   }
-  openDialog(){}
+  openDialog(row:IQuestion,action:string){
+    const dialogRef = this.dialog.open(DialogComponent)
 
+    dialogRef.afterClosed().subscribe((confirmed)=>{
+      if(confirmed){
+        switch(action) {
+          case 'toggleVisibilty':
+            this.hideQuestion(row)
+          break;
+          case 'delete':
+            this.deleteQuestion(row)
+            break;
+        }
+      }
+    })
+  }
+openSnackbarNotification(message:string,action:string="dismess"){
+    this._snackBar.open(message, action, { 
+      duration: 2000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right', 
+    }); 
+}
 }
 
 

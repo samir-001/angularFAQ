@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import {  Subscription } from 'rxjs';
+import { Router, RouterModule } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
-
+import {TranslateModule, TranslateService} from '@ngx-translate/core';
+import { LangService } from 'src/services/lang.service';
 
 @Component({
   
@@ -10,7 +10,8 @@ import {MatButtonModule} from '@angular/material/button';
   selector: 'app-nav',
   imports:[
     RouterModule,
-    MatButtonModule
+    MatButtonModule,
+    TranslateModule
   ],
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css'],
@@ -19,16 +20,24 @@ import {MatButtonModule} from '@angular/material/button';
    
 })
 export class NavComponent implements OnInit{
-  public language:string ="english"
-  private de!:Subscription
-  constructor(){
-  }
+  public ActiveRoute!:string
+  public currentLang!:string
+  constructor(private route:Router,public lang:LangService,private Translate:TranslateService){}
   ngOnInit(): void {
-  
-  }
-  changeLanguage = ()=>{
-   if( this.language === "english"){ this.language = "العربية" }else{this.language =  "english"}
-  }
-  
+    this.lang.currentlang.subscribe((lang)=>{
+      this.currentLang = lang
+      this.Translate.use(lang)
+    })
+    }
 
+  changeRoute(){
+    if(this.ActiveRoute === 'admin'){
+      this.route.navigate(['/site'])
+      this.ActiveRoute = 'site'
+    }else{
+      this.route.navigate(['/admin'])
+      this.ActiveRoute = 'admin'
+      
+    }
+  }
 }

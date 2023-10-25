@@ -1,7 +1,11 @@
 <div class="container">
 
   <div class="sa-nav">
-    <a routerLink="home" mat-button  class="sa-link "[routerLinkActive]="'active'">home</a>
-    <a  class="sa-link" mat-stroked-button (click)="changeLanguage()" >{{language =="english" ?"العربية":"english"}}</a>
+  
+
+
+      <a  class="sa-link" mat-stroked-button (click)="changeRoute()" >{{ActiveRoute ==="site"?(currentLang === "en"?"admin":"الإدارة"):(currentLang === "en"?"home":"الرئيسية")}}</a>
+    
+      <a  class="sa-link" mat-stroked-button (click)="lang.changeLang()" >{{'language'|translate}}</a>
   </div>
 </div>

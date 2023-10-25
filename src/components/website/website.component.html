@@ -1,4 +1,5 @@
 <div class="container">
+<ng-container *ngIf="!ErrorMessage">
   <cdk-accordion class=" accordion">
     <cdk-accordion-item
     *ngFor="let item of obs|async; let index = index;"
@@ -9,8 +10,9 @@
       [attr.id]="'accordion-header-' + index"
       [attr.aria-expanded]="accordionItem.expanded"
       [attr.aria-controls]="'accordion-body-' + index">
-      <div class=" accordion-item-header" (click)="accordionItem.toggle()">
-        {{ item.arQuestion }}
+
+        <div class=" accordion-item-header" (click)="accordionItem.toggle()">
+          {{ item.arQuestion }}
         <span class=" accordion-item-description">
           Click to {{ accordionItem.expanded ? 'close' : 'open' }}
         </span>
@@ -27,9 +29,12 @@
     
 </cdk-accordion>
 <mat-paginator [length]="100"
-          [pageSize]="2"
-          [pageSizeOptions]="[2, 10, 25, 100]"
-          aria-label="Select page">
-        </mat-paginator>
-        
+  [pageSize]="2"
+  [pageSizeOptions]="[2, 10, 25, 100]"
+  aria-label="Select page">
+</mat-paginator>     
+</ng-container> 
+<div class="sa-center" *ngIf="!!ErrorMessage">
+  {{ErrorMessage}}
+</div> 
 </div>

@@ -1,4 +1,32 @@
 {
   "users": [],
-  "questions": []
+  "questions": [
+    {
+      "enQuestion": "samir 1 ",
+      "arQuestion": "علي",
+      "category": "cat 1",
+      "enAnswer": "samir answer 1 ",
+      "arAnswer": "اجبابة سمير",
+      "id": 1,
+      "visibility": true
+    },
+    {
+      "enQuestion": "asdasd",
+      "arQuestion": "asd",
+      "category": "dsasd",
+      "enAnswer": "asdasd",
+      "arAnswer": "asdasd",
+      "id": 2,
+      "visibility": true
+    },
+    {
+      "enQuestion": "asdasd",
+      "arQuestion": "sadasd",
+      "category": "asdasd",
+      "enAnswer": "asdasdas",
+      "arAnswer": "asddasds",
+      "id": 3,
+      "visibility": true
+    }
+  ]
 }

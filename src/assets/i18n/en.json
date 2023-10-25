@@ -1,0 +1,20 @@
+
+{
+    "language":"english",
+    "home":"home",
+    "admin":"admin",
+    "id":"id",
+    "category":"category",
+    "question":"question",
+    "answer":"answer",
+    "action":"action",
+    "edit":"edit",
+    "":"hide",
+    "show":"show",
+    "delete":"delete" ,
+    "save":"save",
+    "add":"add",
+    "confirm":"confirm",
+    "confirmMessage":"are You sure"
+
+}
