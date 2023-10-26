@@ -4,6 +4,7 @@ export interface IQuestion{
     enQuestion:string;
     arAnswer:string;
     enAnswer:string;
-    category:string,
+    enCategory:string,
+    arCategory:string,
     visibility:boolean;
 }

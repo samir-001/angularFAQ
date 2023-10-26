@@ -1,6 +1,5 @@
 
 {
-    "language":"العربية",
     "home":"الرئيسية",
     "admin":"الإدرة",
     "id":"رقم",
@@ -16,7 +15,10 @@
     "save":"حفظ",
     "add":"إضافة",
     "confirm":"تأكيد",
-    "confirmMessage":"هل أنت متأكد"
+    "confirmMessage":"هل أنت متأكد",
+    "noDataFound":"لاتوجد بيانات",
+    "addedSuccessfully":"تمت الإضافة بنجاح",
+    "editedSuccessfully":"تمت التعديل بنجاح"
 
  
 

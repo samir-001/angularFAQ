@@ -6,6 +6,6 @@
 
       <a  class="sa-link" mat-stroked-button (click)="changeRoute()" >{{ActiveRoute ==="site"?(currentLang === "en"?"admin":"الإدارة"):(currentLang === "en"?"home":"الرئيسية")}}</a>
     
-      <a  class="sa-link" mat-stroked-button (click)="lang.changeLang()" >{{'language'|translate}}</a>
+      <a  class="sa-link" mat-stroked-button (click)="lang.changeLang()" >{{(currentLang === "ar"?"englsih":"العربية")}}</a>
   </div>
 </div>

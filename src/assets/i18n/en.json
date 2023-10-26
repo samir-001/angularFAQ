@@ -1,6 +1,5 @@
 
 {
-    "language":"english",
     "home":"home",
     "admin":"admin",
     "id":"id",
@@ -15,6 +14,10 @@
     "save":"save",
     "add":"add",
     "confirm":"confirm",
-    "confirmMessage":"are You sure"
+    "confirmMessage":"are You sure" ,
+    "noDataFound":"no data found",
+    "addedSuccessfully":"added Successfully",
+    "editedSuccessfully":"edited Successfully"
+
 
 }

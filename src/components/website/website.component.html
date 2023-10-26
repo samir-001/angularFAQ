@@ -1,7 +1,19 @@
 <div class="container">
+  
 <ng-container *ngIf="!ErrorMessage">
-  <cdk-accordion class=" accordion">
-    <cdk-accordion-item
+  
+  <cdk-accordion class=" accordion" [dir]="language=='ar'?'rtl':'ltr'"  >
+
+    <div class="sa-m-5" *ngIf="language ==='ar'">
+      <button class="sa-m-5"  mat-raised-button  (click)="filterData()">الكل</button>
+      <button class="sa-m-5"  mat-raised-button *ngFor="let cat of arCategory" (click)="filterData(cat)">{{cat}}</button>
+    </div>
+    <div class="sa-m-5"  *ngIf="language ==='en'">
+      <button class="sa-m-5"  mat-raised-button (click)="filterData()">all</button>
+      <button  class="sa-m-5" mat-raised-button *ngFor="let cat of enCategory" (click)="filterData(cat)">{{cat}}</button>
+    </div>
+
+    <cdk-accordion-item 
     *ngFor="let item of obs|async; let index = index;"
     #accordionItem="cdkAccordionItem"
       class=" accordion-item"
@@ -12,7 +24,7 @@
       [attr.aria-controls]="'accordion-body-' + index">
 
         <div class=" accordion-item-header" (click)="accordionItem.toggle()">
-          {{ item.arQuestion }}
+          {{ language =='ar'?item.arQuestion:item.enQuestion  }}
         <span class=" accordion-item-description">
           Click to {{ accordionItem.expanded ? 'close' : 'open' }}
         </span>
@@ -23,16 +35,22 @@
         [style.display]="accordionItem.expanded ? '' : 'none'"
         [attr.id]="'accordion-body-' + index"
         [attr.aria-labelledby]="'accordion-header-' + index">
-        {{ item.arAnswer }}
+        {{ language =='ar'?item.arAnswer:item.enAnswer  }}
       </div>
     </cdk-accordion-item>
     
 </cdk-accordion>
-<mat-paginator [length]="100"
-  [pageSize]="2"
-  [pageSizeOptions]="[2, 10, 25, 100]"
-  aria-label="Select page">
+<div  [class.hide]="pageSize >= dataLength">
+
+  
+  <mat-paginator [length]="100"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  aria-label="Select page"
+  changePageSiz
+  
+  >
 </mat-paginator>     
+</div>
 </ng-container> 
 <div class="sa-center" *ngIf="!!ErrorMessage">
   {{ErrorMessage}}

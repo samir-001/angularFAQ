@@ -59,14 +59,16 @@ export class CreateQuestionFormComponent implements OnInit{
       {
         this.questionService.upDateQuestion(this.id,form.value).subscribe((data)=>{
           this.router.navigate(['/admin'])
-          this.openSnackbarNotification('question added successfully')
+          this.openSnackbarNotification(this.translate.instant('editedSuccessfully'))
         })
       }
       else
       {
-          this.questionService.createQuestion(form.value).subscribe((data)=>{
+        const modifyVisibility = {...form.value,visibility :true}
+        console.log(modifyVisibility)
+          this.questionService.createQuestion(modifyVisibility).subscribe((data)=>{
           this.router.navigate(['/admin'])
-          this.openSnackbarNotification('question edited successfully')
+          this.openSnackbarNotification(this.translate.instant('addedSuccessfully'))
 
          })
       }

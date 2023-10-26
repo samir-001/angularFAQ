@@ -4,25 +4,40 @@
         
         <mat-form-field  [style]="{width:'49%',marginRight:'2%'}">
             <mat-label>question in english</mat-label>
-            <input matInput ngModel name="enQuestion" >
+            <input matInput ngModel name="enQuestion" #enQuestion="ngModel" required>
+            <mat-error *ngIf="!enQuestion.valid&&enQuestion.touched">this field is required</mat-error>
+
         </mat-form-field>
         <mat-form-field  style="width:49%">
-            <mat-label>question in arabic</mat-label>
-            <input matInput   ngModel name="arQuestion">
+            <mat-label>السؤال باللغة العربية</mat-label>
+            <input matInput   ngModel name="arQuestion" #arQuestion="ngModel" required>
+            <mat-error *ngIf="!arQuestion.valid&&arQuestion.touched">هذا الحقل مطلوب</mat-error>
+
         </mat-form-field>
-        <mat-form-field  [style]="{width:'100%'}" >
-            <mat-label>category</mat-label>
-            <input matInput ngModel name="category" >
+        <mat-form-field  [style]="{width:'49%',marginRight:'2%'}" >
+            <mat-label>category in english</mat-label>
+            <input matInput ngModel name="enCategory"  #enCategory="ngModel"  required>
+            <mat-error *ngIf="!enCategory.valid&&enCategory.touched">this field is required</mat-error>
+        </mat-form-field>
+        <mat-form-field  [style]="{width:'49%'}" >
+            <mat-label>القسم باللغة العربية</mat-label>
+            <input matInput ngModel name="arCategory" #arCategory="ngModel" required >
+            <mat-error *ngIf="!arCategory.valid&&arCategory.touched">هذا الحقل مطلوب</mat-error>
+
         </mat-form-field>
     <br>
     <mat-form-field style="width:100%">
         <mat-label>answer in english</mat-label>
-        <textarea matInput  ngModel name="enAnswer"  ></textarea>
+        <textarea matInput  ngModel name="enAnswer"  #enAnswer="ngModel"  required></textarea>
+        <mat-error *ngIf="!enAnswer.valid&&enAnswer.touched">this field is required</mat-error>
+
     </mat-form-field>
     <br>
     <mat-form-field style="width:100%">
-        <mat-label>answer in arabic</mat-label>
-        <textarea matInput  ngModel name="arAnswer"  ></textarea>
+        <mat-label>اللإجابة باللغة العربية</mat-label>
+        <textarea matInput  ngModel name="arAnswer"  #arAnswer="ngModel" required></textarea>
+        <mat-error *ngIf="!arAnswer.valid&&arAnswer.touched">هذا الحقل مطلوب</mat-error>
+
       </mat-form-field>
       <button  mat-raised-button color="primary">{{mode == 'edit'?('edit' |translate):('add' |translate)}}</button>
       <button class="sa-mx-5" mat-raised-button color="warn" (click)="cancelData($event)">{{'cancel' |translate}}</button>

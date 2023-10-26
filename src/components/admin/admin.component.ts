@@ -63,10 +63,9 @@ export class AdminComponent implements  OnInit {
     this.Lang.currentlang.subscribe((lang)=>{
       this.currentLang = lang
     })
-    this.questionsService.getAllQuestions().subscribe((user)=>{
-      console.log(user)
-      this.dataSource = new MatTableDataSource<IQuestion>(user);
-      this.dataSetCount = user.length
+    this.questionsService.getAllQuestions().subscribe((questions)=>{
+      this.dataSource = new MatTableDataSource<IQuestion>(questions);
+      this.dataSetCount = questions.length
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
@@ -85,6 +84,7 @@ export class AdminComponent implements  OnInit {
     this.questionsService.deleteQuestion(row.id).subscribe(()=>{
         const index = this.dataSource.data.indexOf(row);
         this.dataSource.data.splice(index, 1);
+        this.dataSetCount = this.dataSource.data.length
         this.dataSource._updateChangeSubscription(); 
         this.openSnackbarNotification("deleted Successfully")
 

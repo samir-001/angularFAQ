@@ -28,3 +28,7 @@ td, th {
   margin-top:60px ;
 
 }
+.hide{
+  visibility: hidden;
+  height: 0;
+}
