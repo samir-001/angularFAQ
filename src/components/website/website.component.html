@@ -40,17 +40,17 @@
     </cdk-accordion-item>
     
 </cdk-accordion>
-<div  [class.hide]="pageSize >= dataLength">
+<!-- <div  [class.hide]="pageSize >= dataLength"> -->
 
   
   <mat-paginator [length]="100"
   [pageSizeOptions]="[5, 10, 25, 100]"
   aria-label="Select page"
-  changePageSiz
+  changePageSize
   
   >
 </mat-paginator>     
-</div>
+<!-- </div> -->
 </ng-container> 
 <div class="sa-center" *ngIf="!!ErrorMessage">
   {{ErrorMessage}}

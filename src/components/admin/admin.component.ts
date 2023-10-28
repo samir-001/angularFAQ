@@ -1,8 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatSort, MatSortModule} from '@angular/material/sort';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { AfterContentInit, AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { IQuestion } from 'src/modals/question';
@@ -15,6 +12,9 @@ import { DialogComponent } from '../dialog/dialog.component';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar'; 
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LangService } from 'src/services/lang.service';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import {MatSort, MatSortModule} from '@angular/material/sort';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 @Component({
   selector: 'app-admin',
   standalone: true,
@@ -48,7 +48,7 @@ export class AdminComponent implements  OnInit {
   public pageSize!:number; 
   public currentLang!:string 
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator ;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private questionsService :QuestionService,
@@ -59,16 +59,18 @@ export class AdminComponent implements  OnInit {
     private Lang:LangService) {
   }
 
+
   ngOnInit(): void {
     this.Lang.currentlang.subscribe((lang)=>{
       this.currentLang = lang
     })
     this.questionsService.getAllQuestions().subscribe((questions)=>{
-      this.dataSource = new MatTableDataSource<IQuestion>(questions);
-      this.dataSetCount = questions.length
+      this.dataSource = new MatTableDataSource(questions);
+      this.dataSetCount = questions.length;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
+
   }
 
   applyFilter(event: Event) {

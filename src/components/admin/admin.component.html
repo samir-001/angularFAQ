@@ -3,7 +3,7 @@
     <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon" (click)="addNew()">
         <mat-icon>add</mat-icon>
     </button>
-    <div *ngIf="dataSetCount>=1">
+    <div>
 
         <div class="sa-mt-60 sa-dflex-sb">
             
@@ -62,10 +62,8 @@
             <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
         </tr>
     </table>
-    <div  [class.hide]="pageSize >= dataSetCount">
         
         <mat-paginator [length]="dataSetCount" [pageSize]="5" [pageSizeOptions]="[5, 10]" aria-label="Select page of users"></mat-paginator>
-    </div>
 </div>
 </div>
     <div style="text-align: center;" *ngIf="dataSetCount<1">

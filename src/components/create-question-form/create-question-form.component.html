@@ -8,10 +8,10 @@
             <mat-error *ngIf="!enQuestion.valid&&enQuestion.touched">this field is required</mat-error>
 
         </mat-form-field>
-        <mat-form-field  style="width:49%">
+        <mat-form-field  style="width:49%"  dir="rtl">
             <mat-label>السؤال باللغة العربية</mat-label>
             <input matInput   ngModel name="arQuestion" #arQuestion="ngModel" required>
-            <mat-error *ngIf="!arQuestion.valid&&arQuestion.touched">هذا الحقل مطلوب</mat-error>
+            <mat-error *ngIf="!arQuestion.valid&&arQuestion.touched"  style="float: right;">هذا الحقل مطلوب</mat-error>
 
         </mat-form-field>
         <mat-form-field  [style]="{width:'49%',marginRight:'2%'}" >
@@ -19,10 +19,10 @@
             <input matInput ngModel name="enCategory"  #enCategory="ngModel"  required>
             <mat-error *ngIf="!enCategory.valid&&enCategory.touched">this field is required</mat-error>
         </mat-form-field>
-        <mat-form-field  [style]="{width:'49%'}" >
+        <mat-form-field  [style]="{width:'49%'}"   dir="rtl">
             <mat-label>القسم باللغة العربية</mat-label>
             <input matInput ngModel name="arCategory" #arCategory="ngModel" required >
-            <mat-error *ngIf="!arCategory.valid&&arCategory.touched">هذا الحقل مطلوب</mat-error>
+            <mat-error *ngIf="!arCategory.valid&&arCategory.touched"  style="float: right;">هذا الحقل مطلوب</mat-error>
 
         </mat-form-field>
     <br>
@@ -33,10 +33,10 @@
 
     </mat-form-field>
     <br>
-    <mat-form-field style="width:100%">
+    <mat-form-field style="width:100%" dir="rtl">
         <mat-label>اللإجابة باللغة العربية</mat-label>
-        <textarea matInput  ngModel name="arAnswer"  #arAnswer="ngModel" required></textarea>
-        <mat-error *ngIf="!arAnswer.valid&&arAnswer.touched">هذا الحقل مطلوب</mat-error>
+        <textarea matInput  ngModel name="arAnswer"  #arAnswer="ngModel" required ></textarea>
+        <mat-error *ngIf="!arAnswer.valid&&arAnswer.touched"  style="float: right;">هذا الحقل مطلوب</mat-error>
 
       </mat-form-field>
       <button  mat-raised-button color="primary">{{mode == 'edit'?('edit' |translate):('add' |translate)}}</button>

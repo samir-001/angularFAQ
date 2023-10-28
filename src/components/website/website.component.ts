@@ -67,11 +67,6 @@ export class WebsiteComponent implements OnInit {
         this.allQuestions = filteredQuetions
       }
       this.dataSource = new MatTableDataSource(filteredQuetions);
-      
-      filteredQuetions.map((item)=>{
-        return  item.arCategory
-      })
-      this.paginator.pageSize =this.pageSize
       this.dataSource.paginator = this.paginator
       this.dataSetCount = question.length
 
