@@ -59,7 +59,7 @@ export class WebsiteComponent implements OnInit {
       if(filteredQuetions.length < 1){
         this.ErrorMessage= 'no data found'
       }else{
-        this.pageSize = 6
+        this.pageSize = 5
         this.dataLength = filteredQuetions.length
         this.ErrorMessage= null
         this.arCategory = filteredQuetions.map(item=> item.arCategory)
